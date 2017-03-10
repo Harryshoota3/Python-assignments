@@ -32,3 +32,18 @@ you'll need to solve the problem!
 
 
 # Write code here
+def checkHashTag(text):
+    if text.count("#") == 0:
+        print ("none")
+
+    else:
+        word = text.split()
+        for x in word:
+            if x.count("#") > 0:
+                print ("hashtag: " + x)
+
+
+
+        
+tweet = input("Enter tweet: ")
+checkHashTag(tweet)
