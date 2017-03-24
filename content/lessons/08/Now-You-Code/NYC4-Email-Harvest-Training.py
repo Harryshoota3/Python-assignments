@@ -27,3 +27,17 @@ you'll need to solve the problem!
 
 # Write code here 
 
+def copy_email(copyFileName,desFile):
+    read_file = open(copyFileName,'r')
+    content = read_file.read()
+    words = content.split()
+	    number_of_email = 0
+    for x in words:
+        if x == "From":
+		            number_of_email = number_of_email + 1
+            write_file = open(desFile, 'w')
+            email = words[words.index(x)+1]
+            write_file.write(email + "\n")
+    print("The number of email is : ")
+    print(number_of_email)    
+copy_email("NYC4-mBox-short.txt","NYC4-emails.txt")
