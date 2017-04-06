@@ -23,14 +23,22 @@ and then print out the dictionary like this:
 
 import json
 
-with open('NYC4-syr-weather-dec-2015.json', encoding='utf8') as f:
-    weather = json.loads(f.read())
+with open('NYC4-syr-weather-dec-2015-this-week.json') as json_data:
+    daily_temp = json.load(json_data)
 
-stats =  { 'above-freezing' : 0, 'below-freezing' : 0 }
-for w in weather:
-    if w['Mean TemperatureF'] > 32:
-        stats['above-freezing'] +=1
-    else:
-        stats['below-freezing'] +=1
+cold_day = 0
+hot_day = 0
+
+for day in daily_temp:
+    for temp in day:
+        if(isinstance(day[temp],int) or isinstance(day[temp],float)):
+           if day[temp] > 32:
+               hot_day = hot_day + 1
+
+           elif day[temp] < 32:
+               cold_day = cold_day + 1
         
-print(stats)
+temp_stats = {}
+temp_stats["below-freezing"] = cold_day
+temp_stats["above-freezing"] = hot_day
+print(temp_stats)
